@@ -1,5 +1,6 @@
 package com.m2dl.charliefinder.activity;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -40,6 +41,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
     ImageView iv1, iv2, iv3;
     int j =0;
     private SensorManager sensorMgr;
+    int score = 300;
     private Sensor s;
     //int j =0;
     private static final float SHAKE_THRESHOLD = 1.25f; // m/S**2
