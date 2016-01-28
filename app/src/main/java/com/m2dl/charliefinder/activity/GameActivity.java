@@ -3,6 +3,10 @@ package com.m2dl.charliefinder.activity;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.design.widget.FloatingActionButton;
@@ -17,6 +21,7 @@ import android.widget.Chronometer;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.m2dl.charliefinder.R;
@@ -24,12 +29,17 @@ import com.m2dl.charliefinder.metier.CustomObject;
 import java.lang.reflect.Field;
 import java.util.Random;
 
-public class GameActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity implements SensorEventListener {
     List<CustomObject> listObjects = new ArrayList<>();
     CustomDrawableView customDrawableView;
     Chronometer chronometer;
     TextView textView;
-    int j =0;
+    private SensorManager sensorMgr;
+    private Sensor s;
+    //int j =0;
+    private static final float SHAKE_THRESHOLD = 1.25f; // m/S**2
+    private static final int MIN_TIME_BETWEEN_SHAKES_MILLISECS = 1200;
+    private long mLastShakeTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +51,10 @@ public class GameActivity extends AppCompatActivity {
         final int maxHeight = mDisplay.getHeight();
 
         textView = (TextView) findViewById(R.id.textView);
+        sensorMgr = (SensorManager) getSystemService(SENSOR_SERVICE);
+        s = sensorMgr.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        sensorMgr.registerListener(this, s,
+                SensorManager.SENSOR_DELAY_NORMAL);
         customDrawableView = (CustomDrawableView) findViewById(R.id.Canvas01);
         chronometer = (Chronometer) findViewById(R.id.chronometer);
         chronometer.setBase(SystemClock.elapsedRealtime());
@@ -127,5 +141,40 @@ public class GameActivity extends AppCompatActivity {
         // Decode bitmap with inSampleSize set
         options.inJustDecodeBounds = false;
         return BitmapFactory.decodeResource(res, resId, options);
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        int sensor = event.sensor.getType();
+        float [] values = event.values;
+        long curTime = System.currentTimeMillis();
+
+        synchronized (this) {
+            if (sensor == Sensor.TYPE_ACCELEROMETER) {
+                if ((curTime - mLastShakeTime) > MIN_TIME_BETWEEN_SHAKES_MILLISECS) {
+                    float x = values[0];
+                    float y = values[1];
+                    float z = values[2];
+
+                    double acceleration = Math.sqrt(Math.pow(x, 2) +
+                            Math.pow(y, 2) +
+                            Math.pow(z, 2)) - SensorManager.GRAVITY_EARTH;
+
+
+                    if (acceleration > SHAKE_THRESHOLD) {
+                        mLastShakeTime = curTime;
+                        Collections.reverse(listObjects);
+                    }
+                }
+
+            }
+        }
+
+
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
     }
 }
