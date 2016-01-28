@@ -1,6 +1,7 @@
 package com.m2dl.charliefinder.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -31,6 +32,8 @@ public class CustomDrawableView extends View {
     private int cptSeconds = 0;
     ImageView iv1, iv2, iv3;
     Integer currentImageToFind = 0;
+
+    GameActivity gm;
 
     List<CustomObject> listObjects = new ArrayList<>();
     List<CustomObject> randomObjects = new ArrayList<>();
@@ -186,7 +189,9 @@ public class CustomDrawableView extends View {
         System.out.println(listMatch.size() + "éléments pour votre sélection");
 
         if (listMatch.size() > 0) {
-            CustomObject clicked = listMatch.get(0);
+
+
+            CustomObject clicked = listMatch.get(listMatch.size()-1);
             CustomObject result = null;
             for (CustomObject co : randomObjects) {
                 if (co.getName() == clicked.getName()) {
@@ -198,8 +203,18 @@ public class CustomDrawableView extends View {
                 randomObjects.remove(result);
             }
 
+            if (randomObjects.size() == 0) {
+                Intent intent = new Intent(gm, EndGameActivity.class);
+                intent.putExtra("score", 300);
+                gm.startActivity(intent);
+            }
+
         }
         //System.out.println(listMatch);
+    }
+
+    public void setActivity(GameActivity gm) {
+        this.gm = gm;
     }
 
     private Runnable moveObject = new Runnable() {

@@ -72,6 +72,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
 
         final GameActivity gm = this;
 
+
         chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @Override
             public void onChronometerTick(Chronometer chronometer) {
@@ -126,6 +127,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
         customDrawableView.setMaxH(maxHeight);
         customDrawableView.setRandomObjects(getRandomClippart());
         customDrawableView.setImageViews(iv1, iv2, iv3);
+        customDrawableView.setActivity(this);
 
         chronometer.start();
     }
