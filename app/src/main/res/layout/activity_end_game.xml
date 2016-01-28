@@ -19,7 +19,8 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/backgroundend" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -51,7 +52,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textColor="#520101"
-        android:background="#a7aefb" />
+        android:background="#a7aefb"
+        android:onClick="lauchGameActivity"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -62,7 +64,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:background="#a7aefb"
-        android:textColor="#520101" />
+        android:textColor="#520101"
+        android:onClick="lauchMainActivity"/>
 
     <TextView
         android:layout_width="wrap_content"

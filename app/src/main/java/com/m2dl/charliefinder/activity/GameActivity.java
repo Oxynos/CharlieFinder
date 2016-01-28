@@ -8,7 +8,6 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.SystemClock;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -38,9 +37,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
     CustomDrawableView customDrawableView;
     Chronometer chronometer;
     TextView textView;
-
     ImageView iv1, iv2, iv3;
-
     int j =0;
     private SensorManager sensorMgr;
     private Sensor s;
@@ -48,6 +45,8 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
     private static final float SHAKE_THRESHOLD = 1.25f; // m/S**2
     private static final int MIN_TIME_BETWEEN_SHAKES_MILLISECS = 1200;
     private long mLastShakeTime;
+
+    private int nbCovering;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +56,9 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
         Display mDisplay = this.getWindowManager().getDefaultDisplay();
         final int maxWidth  = mDisplay.getWidth();
         final int maxHeight = mDisplay.getHeight();
+        nbCovering = Settings.getInstance().getNbCovering();
+
+        textView = (TextView) findViewById(R.id.tvScore);
 
         sensorMgr = (SensorManager) getSystemService(SENSOR_SERVICE);
         s = sensorMgr.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -66,12 +68,20 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
         chronometer = (Chronometer) findViewById(R.id.chronometer);
         chronometer.setBase(SystemClock.elapsedRealtime());
 
+        final GameActivity gm = this;
+
         chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @Override
             public void onChronometerTick(Chronometer chronometer) {
-                //TODO implementer la fin du jeu
-                /*textView.setText(j + "");
-                j++;*/
+                if (j == 10) {
+                    Intent intent = new Intent(gm, EndGameActivity.class);
+                    intent.putExtra("score", score);
+                    startActivity(intent);
+                    finish();
+                }
+                score--;
+                textView.setText("Score: " + score);
+                j++;
             }
         });
 
@@ -195,9 +205,10 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
                             Math.pow(z, 2)) - SensorManager.GRAVITY_EARTH;
 
 
-                    if (acceleration > SHAKE_THRESHOLD) {
+                    if (acceleration > SHAKE_THRESHOLD && nbCovering > 0) {
                         mLastShakeTime = curTime;
                         Collections.reverse(listObjects);
+                        nbCovering--;
                     }
                 }
 
@@ -211,6 +222,4 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
     }
-
-
 }

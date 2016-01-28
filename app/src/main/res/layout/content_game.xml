@@ -11,7 +11,8 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.m2dl.charliefinder.activity.GameActivity"
     tools:showIn="@layout/activity_game"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="@drawable/backgroundgame">
 
     <Chronometer
         android:layout_width="100dp"
@@ -60,6 +61,15 @@
             android:layout_alignParentEnd="true" />
 
     </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Score: 0"
+        android:id="@+id/tvScore"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 
 </RelativeLayout>
