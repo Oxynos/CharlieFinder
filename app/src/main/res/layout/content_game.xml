@@ -11,7 +11,8 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.m2dl.charliefinder.activity.GameActivity"
     tools:showIn="@layout/activity_game"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="@drawable/backgroundgame">
 
     <TableRow
         android:layout_width="match_parent"
