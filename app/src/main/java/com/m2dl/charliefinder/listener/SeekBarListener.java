@@ -1,4 +1,4 @@
-package com.m2dl.charliefinder.metier;
+package com.m2dl.charliefinder.listener;
 
 import android.widget.SeekBar;
 import android.widget.TextView;

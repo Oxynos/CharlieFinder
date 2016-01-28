@@ -9,7 +9,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.m2dl.charliefinder.R;
-import com.m2dl.charliefinder.metier.SeekBarListener;
+import com.m2dl.charliefinder.listener.SeekBarListener;
 import com.m2dl.charliefinder.metier.Settings;
 
 public class SettingsActivity extends AppCompatActivity {
