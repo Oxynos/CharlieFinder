@@ -37,8 +37,8 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
     private SensorManager sensorMgr;
     private Sensor s;
     //int j =0;
-    private static final float SHAKE_THRESHOLD = 3.25f; // m/S**2
-    private static final int MIN_TIME_BETWEEN_SHAKES_MILLISECS = 1000;
+    private static final float SHAKE_THRESHOLD = 1.25f; // m/S**2
+    private static final int MIN_TIME_BETWEEN_SHAKES_MILLISECS = 1200;
     private long mLastShakeTime;
 
     @Override

@@ -8,6 +8,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Menu;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import com.m2dl.charliefinder.R;
