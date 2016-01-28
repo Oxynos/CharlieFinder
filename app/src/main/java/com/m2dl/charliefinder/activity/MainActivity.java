@@ -1,22 +1,15 @@
 package com.m2dl.charliefinder.activity;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
-import android.view.WindowManager;
 import android.widget.Button;
 
-import com.m2dl.charliefinder.FullscreenActivity;
 import com.m2dl.charliefinder.R;
 
 import java.io.File;
@@ -24,8 +17,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
+
     private static final int MY_PERMISSIONS_REQUEST = 0;
     private static final int SETTINGS_ACTIVITY_REQUEST_CODE = 100;
+    private static final int GAME_ACTIVITY_REQUEST_CODE = 200;
 
     private Button settings;
     private Button play;
@@ -47,6 +42,14 @@ public class MainActivity extends AppCompatActivity {
     public void loadSettings(View view) {
         Intent myIntent = new Intent(this, SettingsActivity.class);
         startActivityForResult(myIntent, SETTINGS_ACTIVITY_REQUEST_CODE);
+    }
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
 
     public void permissions() {
