@@ -32,8 +32,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -72,12 +70,12 @@ public class MainActivity extends AppCompatActivity {
         ActivityCompat.requestPermissions(this, permissions, 3);
     }
 
-    public void launchSettingsActivity() {
+    public void launchSettingsActivity(View view) {
         //Intent intent = new Intent(this, PlanActivity.class);
         //startActivity(intent);
     }
 
-    public void launchGameActivity() {
+    public void launchGameActivity(View view) {
         Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);
     }
