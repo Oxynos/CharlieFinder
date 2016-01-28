@@ -39,8 +39,6 @@ public class MainActivity extends AppCompatActivity {
         settings = (Button) findViewById(R.id.btnSettings);
         play = (Button) findViewById(R.id.btnPlay);
 
-        Settings.getInstance().setNormal();
-
     }
 
     public void loadSettings(View view) {

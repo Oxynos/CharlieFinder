@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 
 import com.m2dl.charliefinder.R;
 import com.m2dl.charliefinder.metier.CustomObject;
+import com.m2dl.charliefinder.metier.Settings;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,16 +27,20 @@ public class CustomDrawableView extends View {
     Bitmap  bmp;
     private int maxH, maxW;
 
-    private Handler mHandler, mHandler2 ;
+    private Handler mHandler, mHandler2, mHandler3;
     private int cptSeconds = 0;
+    ImageView iv1, iv2, iv3;
+    Integer currentImageToFind = 0;
 
     List<CustomObject> listObjects = new ArrayList<>();
+    List<CustomObject> randomObjects = new ArrayList<>();
 
     public CustomDrawableView(Context context, AttributeSet attr) {
         super(context, attr);
 
         mHandler = new Handler();
         mHandler2 = new Handler();
+        mHandler3 = new Handler();
         mHandler.postDelayed(changeDirection, 50);
         mHandler2.postDelayed(moveObject, 60);
 
@@ -114,6 +119,19 @@ public class CustomDrawableView extends View {
         invalidate();
     }
 
+    public void setRandomObjects(List<CustomObject> listObjects) {
+        this.randomObjects = listObjects;
+        invalidate();
+    }
+
+    public void setImageViews(ImageView... iv) {
+        iv1 = iv[0];
+        iv2 = iv[1];
+        iv3 = iv[2];
+
+        mHandler3.postDelayed(changeImageToFind, 2000);
+    }
+
     private Runnable changeDirection = new Runnable() {
         public void run() {
             for (CustomObject co : listObjects) {
@@ -124,8 +142,30 @@ public class CustomDrawableView extends View {
                 invalidate();
             }
 
+            mHandler.postDelayed(this, 2000);
+        }
+    };
 
-            mHandler.postDelayed(this, 2500);
+    private Runnable changeImageToFind = new Runnable() {
+        public void run() {
+
+            if (currentImageToFind < randomObjects.size())
+                iv1.setImageBitmap(randomObjects.get(currentImageToFind).getBmp());
+
+            if (currentImageToFind+1 < randomObjects.size())
+                iv2.setImageBitmap(randomObjects.get(currentImageToFind+1).getBmp());
+
+            if (currentImageToFind+2 < randomObjects.size())
+                iv3.setImageBitmap(randomObjects.get(currentImageToFind+2).getBmp());
+
+            if (currentImageToFind > randomObjects.size()) {
+                currentImageToFind = 0;
+            } else {
+                currentImageToFind += 3;
+            }
+
+            mHandler.postDelayed(this, 2000);
+            invalidate();
         }
     };
 

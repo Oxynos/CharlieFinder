@@ -15,6 +15,7 @@ import com.m2dl.charliefinder.metier.Settings;
 public class SettingsActivity extends AppCompatActivity {
 
     TextView difficult, tvSeekBar1, tvSeekBar2, tvSeekBar3, tvSeekBar4;
+    boolean perso = false;
     SeekBar sb1, sb2, sb3, sb4;
 
     @Override
@@ -58,6 +59,7 @@ public class SettingsActivity extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.rBtEasy:
                 if (checked) {
+                    perso = false;
                     setEnableSeekBar(false);
                     setValueSeekBar(12, 3, 8, 20);
                     Settings.getInstance().setEasy();
@@ -65,6 +67,7 @@ public class SettingsActivity extends AppCompatActivity {
                 break;
             case R.id.rBtNormal:
                 if (checked) {
+                    perso = false;
                     setEnableSeekBar(false);
                     setValueSeekBar(20, 3, 5, 20);
                     Settings.getInstance().setNormal();
@@ -72,6 +75,7 @@ public class SettingsActivity extends AppCompatActivity {
                 break;
             case R.id.rBtHard:
                 if (checked) {
+                    perso = false;
                     setEnableSeekBar(false);
                     setValueSeekBar(40, 10, 2, 10);
                     Settings.getInstance().setHard();
@@ -80,6 +84,7 @@ public class SettingsActivity extends AppCompatActivity {
             case R.id.rBtPerso:
                 if (checked) {
                     setEnableSeekBar(true);
+                    perso = true;
                 }
                 break;
         }
@@ -89,7 +94,9 @@ public class SettingsActivity extends AppCompatActivity {
         Intent myIntent = new Intent(this, MainActivity.class);
         startActivity(myIntent);
 
-        Settings.getInstance().setPerso(sb1.getProgress(), sb2.getProgress(), sb3.getProgress(), sb4.getProgress());
+        if (perso) {
+            Settings.getInstance().setPerso(sb1.getProgress(), sb2.getProgress(), sb3.getProgress(), sb4.getProgress());
+        }
 
         this.finish();
     }

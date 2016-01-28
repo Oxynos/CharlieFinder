@@ -8,6 +8,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.SystemClock;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -37,7 +38,9 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
     CustomDrawableView customDrawableView;
     Chronometer chronometer;
     TextView textView;
+
     ImageView iv1, iv2, iv3;
+
     int j =0;
     private SensorManager sensorMgr;
     private Sensor s;
@@ -102,9 +105,16 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
             }
         }
 
+        iv1 = (ImageView) findViewById(R.id.imageView1);
+        iv2 = (ImageView) findViewById(R.id.imageView2);
+        iv3 = (ImageView) findViewById(R.id.imageView3);
+
         customDrawableView.setListObjects(listObjects);
         customDrawableView.setMaxW(maxWidth);
         customDrawableView.setMaxH(maxHeight);
+        customDrawableView.setRandomObjects(getRandomClippart());
+        customDrawableView.setImageViews(iv1, iv2, iv3);
+
         chronometer.start();
     }
 
@@ -114,7 +124,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
         List<CustomObject> randomClippart = new ArrayList<CustomObject>();
         List<Integer> randomsInts = new ArrayList<Integer>();
 
-        for (int i = 1; i < Settings.getInstance().getNbClippartToFind(); i++){
+        for (int i = 0; i < Settings.getInstance().getNbClippartToFind(); i++){
             Integer randomInt = randomGenerator.nextInt(Settings.getInstance().getNbClippartToDisplay());
 
             while (randomsInts.contains(randomInt)) {
@@ -201,4 +211,6 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
     }
+
+
 }

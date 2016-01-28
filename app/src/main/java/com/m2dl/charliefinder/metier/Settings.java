@@ -5,10 +5,10 @@ package com.m2dl.charliefinder.metier;
  */
 public class Settings {
 
-    private int nbClippartToFind;
-    private int nbClippartToDisplay;
-    private int nbCovering;
-    private int givenTime;
+    private int nbClippartToFind = 3;
+    private int nbClippartToDisplay = 12;
+    private int nbCovering = 5;
+    private int givenTime = 20;
 
     public static Settings getInstance() {
 
@@ -25,6 +25,7 @@ public class Settings {
      * Default settings "Normal"
      */
     private Settings() {
+
     }
 
     public void setEasy() {
@@ -42,14 +43,14 @@ public class Settings {
     }
 
     public void setHard() {
-        instance.nbClippartToDisplay = 40;
+        instance.nbClippartToDisplay = 33;
         instance.nbClippartToFind = 10;
         instance.nbCovering = 2;
         instance.givenTime = 10;
     }
 
     public void setPerso(int a, int b, int c, int d) {
-        instance.nbClippartToDisplay = a;
+        instance.nbClippartToDisplay = a > 31 ? 31 : a;
         instance.nbClippartToFind = b;
         instance.nbCovering = c;
         instance.givenTime = d;
