@@ -3,10 +3,6 @@ package com.m2dl.charliefinder.activity;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.design.widget.FloatingActionButton;
@@ -21,7 +17,6 @@ import android.widget.Chronometer;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import com.m2dl.charliefinder.R;
@@ -29,11 +24,13 @@ import com.m2dl.charliefinder.metier.CustomObject;
 import java.lang.reflect.Field;
 import java.util.Random;
 
-public class GameActivity extends AppCompatActivity implements SensorEventListener {
+public class GameActivity extends AppCompatActivity {
     List<CustomObject> listObjects = new ArrayList<>();
     CustomDrawableView customDrawableView;
     Chronometer chronometer;
     TextView textView;
+    ImageView iv1, iv2, iv3;
+    int j =0;
     private SensorManager sensorMgr;
     private Sensor s;
     //int j =0;
@@ -102,6 +99,26 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
         customDrawableView.setMaxW(maxWidth);
         customDrawableView.setMaxH(maxHeight);
         chronometer.start();
+    }
+
+    public List<CustomObject> getRandomClippart() {
+
+        Random randomGenerator = new Random();
+        List<CustomObject> randomClippart = new ArrayList<CustomObject>();
+        List<Integer> randomsInts = new ArrayList<Integer>();
+
+        for (int i = 1; i < Settings.getInstance().getNbClippartToFind(); i++){
+            Integer randomInt = randomGenerator.nextInt(Settings.getInstance().getNbClippartToDisplay());
+
+            while (randomsInts.contains(randomInt)) {
+                randomInt = randomGenerator.nextInt(Settings.getInstance().getNbClippartToDisplay());
+            }
+
+            randomsInts.add(randomInt);
+            randomClippart.add(listObjects.get(randomInt));
+        }
+
+        return randomClippart;
     }
 
     public static int calculateInSampleSize(

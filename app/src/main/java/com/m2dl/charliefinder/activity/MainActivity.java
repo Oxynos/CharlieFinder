@@ -12,6 +12,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 import com.m2dl.charliefinder.R;
+import com.m2dl.charliefinder.metier.Settings;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -38,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         settings = (Button) findViewById(R.id.btnSettings);
         play = (Button) findViewById(R.id.btnPlay);
 
+        Settings.getInstance().setNormal();
+
     }
 
     public void loadSettings(View view) {
@@ -61,11 +64,6 @@ public class MainActivity extends AppCompatActivity {
         };
 
         ActivityCompat.requestPermissions(this, permissions, 3);
-    }
-
-    public void launchSettingsActivity(View view) {
-        //Intent intent = new Intent(this, PlanActivity.class);
-        //startActivity(intent);
     }
 
     public void launchEndGameActivity(View view) {
