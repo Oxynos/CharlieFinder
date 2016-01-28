@@ -10,42 +10,64 @@ public class Settings {
     private int nbCovering;
     private int givenTime;
 
-    public Settings(int nbClippartToDisplay, int nbClippartToFind, int nbCovering, int givenTime) {
-        this.nbClippartToDisplay = nbClippartToDisplay;
-        this.nbClippartToFind = nbClippartToFind;
-        this.nbCovering = nbCovering;
-        this.givenTime = givenTime;
+    public static Settings getInstance() {
+
+        if (instance == null) { // Premier appel
+            instance = new Settings();
+        }
+
+        return instance;
     }
 
-    public void setNbCovering(int nbCovering) {
-        this.nbCovering = nbCovering;
+    private static Settings instance;
+
+    /**
+     * Default settings "Normal"
+     */
+    private Settings() {
     }
 
-    public void setNbClippartToDisplay(int nbClippartToDisplay) {
-        this.nbClippartToDisplay = nbClippartToDisplay;
+    public void setEasy() {
+        instance.nbClippartToDisplay = 12;
+        instance.nbClippartToFind = 3;
+        instance.nbCovering = 5;
+        instance.givenTime = 20;
     }
 
-    public void setNbClippartToFind(int nbClippartToFind) {
-        this.nbClippartToFind = nbClippartToFind;
+    public void setNormal() {
+        instance.nbClippartToDisplay = 20;
+        instance.nbClippartToFind = 5;
+        instance.nbCovering = 3;
+        instance.givenTime = 15;
     }
 
-    public void setGivenTime(int givenTime) {
-        this.givenTime = givenTime;
+    public void setHard() {
+        instance.nbClippartToDisplay = 40;
+        instance.nbClippartToFind = 10;
+        instance.nbCovering = 2;
+        instance.givenTime = 10;
+    }
+
+    public void setPerso(int a, int b, int c, int d) {
+        instance.nbClippartToDisplay = a;
+        instance.nbClippartToFind = b;
+        instance.nbCovering = c;
+        instance.givenTime = d;
     }
 
     public int getNbClippartToFind() {
-        return nbClippartToFind;
+        return instance.nbClippartToFind;
     }
 
     public int getNbClippartToDisplay() {
-        return nbClippartToDisplay;
+        return instance.nbClippartToDisplay;
     }
 
     public int getNbCovering() {
-        return nbCovering;
+        return instance.nbCovering;
     }
 
     public int getGivenTime() {
-        return givenTime;
+        return instance.givenTime;
     }
 }

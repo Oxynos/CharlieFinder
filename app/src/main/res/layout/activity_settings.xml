@@ -7,6 +7,230 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".activity.SettingsActivity">
+    tools:context=".activity.SettingsActivity"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Difficulté :"
+        android:id="@+id/difficult"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="40dp"
+        android:layout_marginTop="30dp" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="201dp"
+        android:id="@+id/radioGroup"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/difficult"
+        android:layout_toRightOf="@+id/difficult"
+        android:layout_marginTop="30dp">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Facile"
+            android:id="@+id/rBtEasy"
+            android:layout_below="@+id/rBtRecyclage"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:checked="true"
+            android:onClick="onRadioButtonClicked"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Normal"
+            android:id="@+id/rBtNormal"
+            android:layout_below="@+id/rBtFuite"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:checked="false"
+            android:onClick="onRadioButtonClicked"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Difficile"
+            android:id="@+id/rBtHard"
+            android:layout_below="@+id/textView2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:checked="false"
+            android:onClick="onRadioButtonClicked"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Personnalisé"
+            android:id="@+id/rBtPerso"
+            android:layout_below="@+id/textView2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:checked="false"
+            android:onClick="onRadioButtonClicked"/>
+
+    </RadioGroup>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/radioGroup"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/relativeLayout">
+
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="45dp"
+            android:text="Nombre de clippart à afficher : "
+            android:id="@+id/textView1"
+            android:textSize="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <SeekBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="230dp"
+            android:layout_height="50dp"
+            android:id="@+id/seekBar1"
+            android:layout_below="@+id/textView1"
+            android:layout_alignLeft="@+id/textView1"
+            android:layout_marginLeft="150dp" />
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="New Text"
+            android:id="@+id/tvSeekBar1"
+            android:layout_below="@+id/textView1"
+            android:layout_toRightOf="@+id/seekBar1"
+            android:layout_toEndOf="@+id/seekBar1"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="55dp"
+            android:text="Nombre de clippart à trouver :"
+            android:id="@+id/textView2"
+            android:layout_below="@+id/seekBar1"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textSize="30dp" />
+
+        <SeekBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="230dp"
+            android:layout_height="50dp"
+            android:id="@+id/seekBar2"
+            android:layout_below="@+id/textView2"
+            android:layout_toLeftOf="@+id/tvSeekBar1"
+            android:layout_toStartOf="@+id/tvSeekBar1" />
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="New Text"
+            android:id="@+id/tvSeekBar2"
+            android:layout_below="@+id/textView2"
+            android:layout_toRightOf="@+id/seekBar2"
+            android:layout_toEndOf="@+id/seekBar2"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="55dp"
+            android:text="Nombre de secouement autorisé :"
+            android:id="@+id/textView3"
+            android:layout_below="@+id/seekBar2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textSize="30dp" />
+
+        <SeekBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="230dp"
+            android:layout_height="50dp"
+            android:id="@+id/seekBar3"
+            android:layout_below="@+id/textView3"
+            android:layout_toLeftOf="@+id/tvSeekBar2"
+            android:layout_toStartOf="@+id/tvSeekBar2" />
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="New Text"
+            android:id="@+id/tvSeekBar3"
+            android:layout_below="@+id/textView3"
+            android:layout_toRightOf="@+id/seekBar3"
+            android:layout_toEndOf="@+id/seekBar3"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="55dp"
+            android:text="Temps imparti :"
+            android:id="@+id/textView4"
+            android:layout_below="@+id/seekBar3"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textSize="30dp" />
+
+        <SeekBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="230dp"
+            android:layout_height="50dp"
+            android:id="@+id/seekBar4"
+            android:layout_below="@+id/textView4"
+            android:layout_toLeftOf="@+id/tvSeekBar3"
+            android:layout_toStartOf="@+id/tvSeekBar3" />
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="New Text"
+            android:id="@+id/tvSeekBar4"
+            android:layout_below="@+id/textView4"
+            android:layout_toRightOf="@+id/seekBar4"
+            android:layout_toEndOf="@+id/seekBar4"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="Sec"
+            android:id="@+id/textViewSeconde"
+            android:layout_below="@+id/textView4"
+            android:layout_toRightOf="@+id/tvSeekBar4"
+            android:layout_toEndOf="@+id/tvSeekBar4"
+            android:layout_marginTop="10dp"/>
+
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="65dp"
+            android:text="Valider"
+            android:id="@+id/valider"
+            android:onClick="validate"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/seekBar4"
+            android:layout_marginTop="90dp" />
+
+    </RelativeLayout>
+
+
+
 
 </RelativeLayout>
