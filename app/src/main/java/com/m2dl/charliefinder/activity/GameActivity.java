@@ -127,7 +127,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
         customDrawableView.setMaxH(maxHeight);
         customDrawableView.setRandomObjects(getRandomClippart());
         customDrawableView.setImageViews(iv1, iv2, iv3);
-        customDrawableView.setActivity(this);
+        customDrawableView.setActivity(this, score);
 
         chronometer.start();
     }

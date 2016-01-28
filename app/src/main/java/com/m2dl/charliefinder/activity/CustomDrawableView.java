@@ -32,7 +32,7 @@ public class CustomDrawableView extends View {
     private int cptSeconds = 0;
     ImageView iv1, iv2, iv3;
     Integer currentImageToFind = 0;
-
+    int score = 300;
     GameActivity gm;
 
     List<CustomObject> listObjects = new ArrayList<>();
@@ -205,7 +205,7 @@ public class CustomDrawableView extends View {
 
             if (randomObjects.size() == 0) {
                 Intent intent = new Intent(gm, EndGameActivity.class);
-                intent.putExtra("score", 300);
+                intent.putExtra("score", score);
                 gm.startActivity(intent);
             }
 
@@ -213,8 +213,9 @@ public class CustomDrawableView extends View {
         //System.out.println(listMatch);
     }
 
-    public void setActivity(GameActivity gm) {
+    public void setActivity(GameActivity gm, int score) {
         this.gm = gm;
+        this.score = score;
     }
 
     private Runnable moveObject = new Runnable() {
