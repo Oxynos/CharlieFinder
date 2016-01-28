@@ -1,5 +1,6 @@
 package com.m2dl.charliefinder.activity;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -38,13 +39,15 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
     Chronometer chronometer;
     TextView textView;
     ImageView iv1, iv2, iv3;
-    int j =0;
+    int score = 300;
     private SensorManager sensorMgr;
     private Sensor s;
-    //int j =0;
+    int j =0;
     private static final float SHAKE_THRESHOLD = 1.25f; // m/S**2
     private static final int MIN_TIME_BETWEEN_SHAKES_MILLISECS = 1200;
     private long mLastShakeTime;
+
+    private int nbCovering;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,9 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
         Display mDisplay = this.getWindowManager().getDefaultDisplay();
         final int maxWidth  = mDisplay.getWidth();
         final int maxHeight = mDisplay.getHeight();
+        nbCovering = Settings.getInstance().getNbCovering();
+
+        textView = (TextView) findViewById(R.id.tvScore);
 
         sensorMgr = (SensorManager) getSystemService(SENSOR_SERVICE);
         s = sensorMgr.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -63,12 +69,20 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
         chronometer = (Chronometer) findViewById(R.id.chronometer);
         chronometer.setBase(SystemClock.elapsedRealtime());
 
+        final GameActivity gm = this;
+
         chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @Override
             public void onChronometerTick(Chronometer chronometer) {
-                //TODO implementer la fin du jeu
-                /*textView.setText(j + "");
-                j++;*/
+                if (j == 10) {
+                    Intent intent = new Intent(gm, EndGameActivity.class);
+                    intent.putExtra("score", score);
+                    startActivity(intent);
+                    finish();
+                }
+                score--;
+                textView.setText("Score: " + score);
+                j++;
             }
         });
 
@@ -185,9 +199,10 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
                             Math.pow(z, 2)) - SensorManager.GRAVITY_EARTH;
 
 
-                    if (acceleration > SHAKE_THRESHOLD) {
+                    if (acceleration > SHAKE_THRESHOLD && nbCovering > 0) {
                         mLastShakeTime = curTime;
                         Collections.reverse(listObjects);
+                        nbCovering--;
                     }
                 }
 
