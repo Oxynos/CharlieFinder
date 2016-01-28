@@ -89,7 +89,7 @@ public class FullscreenActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_fullscreen);
 
-        mVisible = true;
+        mVisible = false;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = findViewById(R.id.fullscreen_content);
 
@@ -98,7 +98,7 @@ public class FullscreenActivity extends AppCompatActivity {
         mContentView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                toggle();
+                //toggle();
             }
         });
 
@@ -122,7 +122,7 @@ public class FullscreenActivity extends AppCompatActivity {
         if (mVisible) {
             hide();
         } else {
-            show();
+            //show();
         }
     }
 

@@ -1,7 +1,9 @@
-package com.m2dl.charliefinder;
+package com.m2dl.charliefinder.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.m2dl.charliefinder.R;
 
 public class EndGameActivity extends AppCompatActivity {
 

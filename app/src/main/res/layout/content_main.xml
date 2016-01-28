@@ -8,22 +8,16 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.m2dl.charliefinder.MainActivity"
+    tools:context=".activity.MainActivity"
     tools:showIn="@layout/activity_main">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:id="@+id/textView" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Play"
         android:id="@+id/btnPlay"
-        android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="61dp"
         android:onClick="launchGameActivity" />
@@ -33,8 +27,10 @@
         android:layout_height="wrap_content"
         android:text="Settings"
         android:id="@+id/btnSettings"
-        android:layout_marginTop="61dp"
-        android:layout_below="@+id/btnPlay"
-        android:layout_centerHorizontal="true" />
+        android:onClick="loadSettings"
+        android:background="@drawable/settings"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
