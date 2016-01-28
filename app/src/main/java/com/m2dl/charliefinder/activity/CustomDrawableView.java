@@ -17,6 +17,7 @@ import com.m2dl.charliefinder.metier.CustomObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class CustomDrawableView extends View {
     public int width;
@@ -58,13 +59,11 @@ public class CustomDrawableView extends View {
 
     }
 
-
     protected void onDraw(Canvas canvas) {
 
-        for (int i = 0 ; i < 1 ; i++) {
-            canvas.drawBitmap(listObjects.get(i).getBmp(), 0, 0, null);
+        for (CustomObject co : listObjects) {
+            canvas.drawBitmap(co.getBmp(), co.getX(), co.getY(), null);
         }
-
 
         invalidate();
     }
