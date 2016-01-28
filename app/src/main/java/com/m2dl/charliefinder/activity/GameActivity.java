@@ -3,6 +3,10 @@ package com.m2dl.charliefinder.activity;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.design.widget.FloatingActionButton;
@@ -14,17 +18,21 @@ import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Chronometer;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.m2dl.charliefinder.R;
 import com.m2dl.charliefinder.metier.CustomObject;
+import com.m2dl.charliefinder.metier.Settings;
+
 import java.lang.reflect.Field;
 import java.util.Random;
 
-public class GameActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity implements SensorEventListener {
     List<CustomObject> listObjects = new ArrayList<>();
     CustomDrawableView customDrawableView;
     Chronometer chronometer;
@@ -47,7 +55,6 @@ public class GameActivity extends AppCompatActivity {
         final int maxWidth  = mDisplay.getWidth();
         final int maxHeight = mDisplay.getHeight();
 
-        textView = (TextView) findViewById(R.id.textView);
         sensorMgr = (SensorManager) getSystemService(SENSOR_SERVICE);
         s = sensorMgr.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         sensorMgr.registerListener(this, s,
