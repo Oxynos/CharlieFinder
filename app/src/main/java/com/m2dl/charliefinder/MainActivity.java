@@ -15,6 +15,7 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST = 0;
+    // Dev
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
