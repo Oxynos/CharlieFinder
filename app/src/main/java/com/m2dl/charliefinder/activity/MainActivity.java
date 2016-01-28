@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.Button;
@@ -13,7 +14,6 @@ import android.widget.Button;
 import com.m2dl.charliefinder.R;
 
 public class MainActivity extends AppCompatActivity {
-
     private static final int MY_PERMISSIONS_REQUEST = 0;
     private static final int SETTINGS_ACTIVITY_REQUEST_CODE = 100;
 
@@ -35,14 +35,6 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(myIntent, SETTINGS_ACTIVITY_REQUEST_CODE);
     }
 
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
     public void permissions() {
         String permissions[] = {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -56,6 +48,11 @@ public class MainActivity extends AppCompatActivity {
     public void launchSettingsActivity() {
         //Intent intent = new Intent(this, PlanActivity.class);
         //startActivity(intent);
+    }
+
+    public void launchEndGameActivity(View view) {
+        Intent intent = new Intent(this, EndGameActivity.class);
+        startActivity(intent);
     }
 
     @Override
