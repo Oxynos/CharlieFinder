@@ -90,7 +90,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
                     int res2 = r1.nextInt(maxPosY);
 
 
-                    CustomObject co = new CustomObject(f.getName(), tmp, res2, res1, maxPosX, maxPosY);
+                    CustomObject co = new CustomObject(f.getName(), tmp, res1, res2, maxPosX, maxPosY);
                     listObjects.add(co);
                 }
             } catch (Exception e) {

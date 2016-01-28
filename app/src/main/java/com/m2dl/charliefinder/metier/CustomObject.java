@@ -12,9 +12,9 @@ public class CustomObject {
     private String name ;
     private Bitmap bmp;
     private int x;
+    private int y;
     int maxPosX;
     int maxPosY;
-    private int y;
     private int direction;
 
     public CustomObject(String name, Bitmap bmp) {
