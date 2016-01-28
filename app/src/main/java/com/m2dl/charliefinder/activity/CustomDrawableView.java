@@ -36,8 +36,8 @@ public class CustomDrawableView extends View {
 
         mHandler = new Handler();
         mHandler2 = new Handler();
-        mHandler.postDelayed(changeDirection, 2500);
-        mHandler2.postDelayed(moveObject, 10);
+        mHandler.postDelayed(changeDirection, 50);
+        mHandler2.postDelayed(moveObject, 60);
 
         maxH = 100;
         maxW = 100;
@@ -50,6 +50,7 @@ public class CustomDrawableView extends View {
 
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
+                        checkResult(x, y);
                         invalidate();
                         break;
                     case MotionEvent.ACTION_MOVE:
@@ -127,6 +128,24 @@ public class CustomDrawableView extends View {
             mHandler.postDelayed(this, 2500);
         }
     };
+
+    public void checkResult(float x, float y) {
+        int minX, minY, maxX, maxY;
+        List<CustomObject> listMatch = new ArrayList<>();
+        for (CustomObject co : listObjects) {
+            minX = co.getX();
+            maxX = co.getX() + co.getBmp().getWidth();
+            minY = co.getY();
+            maxY = co.getY() + co.getBmp().getHeight();
+
+            if (x > minX && x < maxX && y > minY && y < maxY) {
+                listMatch.add(co);
+                System.out.println("Match");
+            }
+        }
+        System.out.println(listMatch.size() + "éléments pour votre sélection");
+        //System.out.println(listMatch);
+    }
 
     private Runnable moveObject = new Runnable() {
         public void run() {
