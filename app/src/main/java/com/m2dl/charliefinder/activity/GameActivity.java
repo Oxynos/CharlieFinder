@@ -1,13 +1,15 @@
-package com.m2dl.charliefinder;
+package com.m2dl.charliefinder.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class SettingsActivity extends AppCompatActivity {
+import com.m2dl.charliefinder.R;
+
+public class GameActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_game);
     }
 }
