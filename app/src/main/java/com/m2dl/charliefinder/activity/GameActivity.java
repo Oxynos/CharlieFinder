@@ -89,7 +89,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
                     Bitmap tmp = decodeSampledBitmapFromResource(getResources(), f.getInt(null), 100, 100);
 
                     int maxPosX = maxWidth - tmp.getWidth() - 30;
-                    int maxPosY = maxHeight - tmp.getHeight() - 160;
+                    int maxPosY = maxHeight - tmp.getHeight() - 400;
                     int res1 = r1.nextInt(maxPosX);
                     int res2 = r1.nextInt(maxPosY);
 
