@@ -12,18 +12,27 @@ public class CustomObject {
     private String name ;
     private Bitmap bmp;
     private int x;
+    int maxPosX;
+    int maxPosY;
     private int y;
+    private int direction;
 
     public CustomObject(String name, Bitmap bmp) {
         this.name = name;
         this.bmp = bmp;
+        this.x = 0;
+        this.y = 0;
+        this.direction = 0;
     }
 
-    public CustomObject(String name, Bitmap bmp, int x, int y) {
+    public CustomObject(String name, Bitmap bmp, int x, int y, int maxPosX, int maxPosY) {
         this.name = name;
         this.bmp = bmp;
         this.x = x;
         this.y = y;
+        this.direction = 0;
+        this.maxPosX = maxPosX;
+        this.maxPosY = maxPosY;
     }
 
     public int getX() {
@@ -56,5 +65,29 @@ public class CustomObject {
 
     public void setBmp(Bitmap bmp) {
         this.bmp = bmp;
+    }
+
+    public int getDirection() {
+        return direction;
+    }
+
+    public void setDirection(int direction) {
+        this.direction = direction;
+    }
+
+    public int getMaxPosX() {
+        return maxPosX;
+    }
+
+    public void setMaxPosX(int maxPosX) {
+        this.maxPosX = maxPosX;
+    }
+
+    public int getMaxPosY() {
+        return maxPosY;
+    }
+
+    public void setMaxPosY(int maxPosY) {
+        this.maxPosY = maxPosY;
     }
 }

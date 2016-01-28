@@ -35,6 +35,11 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        Display mDisplay = this.getWindowManager().getDefaultDisplay();
+        final int maxWidth  = mDisplay.getWidth();
+        final int maxHeight = mDisplay.getHeight();
+
         textView = (TextView) findViewById(R.id.textView);
         customDrawableView = (CustomDrawableView) findViewById(R.id.Canvas01);
         chronometer = (Chronometer) findViewById(R.id.chronometer);
@@ -57,10 +62,6 @@ public class GameActivity extends AppCompatActivity {
         final Class<R.drawable> c = R.drawable.class;
         final Field[] fields = c.getDeclaredFields();
 
-        Display mDisplay = this.getWindowManager().getDefaultDisplay();
-        final int maxWidth  = mDisplay.getWidth();
-        final int maxHeight = mDisplay.getHeight();
-
         Field[] drawables = android.R.drawable.class.getFields();
         for (Field f : fields) {
             try {
@@ -69,11 +70,13 @@ public class GameActivity extends AppCompatActivity {
                     Random r1 = new Random();
                     Bitmap tmp = decodeSampledBitmapFromResource(getResources(), f.getInt(null), 100, 100);
 
-                    int res1 = r1.nextInt(maxHeight - tmp.getHeight() - 160);
-                    int res2 = r1.nextInt(maxWidth - tmp.getWidth() - 30);
+                    int maxPosX = maxWidth - tmp.getWidth() - 30;
+                    int maxPosY = maxHeight - tmp.getHeight() - 160;
+                    int res1 = r1.nextInt(maxPosX);
+                    int res2 = r1.nextInt(maxPosY);
 
 
-                    CustomObject co = new CustomObject(f.getName(), tmp, res2, res1);
+                    CustomObject co = new CustomObject(f.getName(), tmp, res2, res1, maxPosX, maxPosY);
                     listObjects.add(co);
                 }
             } catch (Exception e) {
@@ -81,15 +84,9 @@ public class GameActivity extends AppCompatActivity {
             }
         }
 
-        for (int i = 0 ; i < 1 ; i++) {
-            //Bitmap bitmap= BitmapFactory.decodeResource(getResources(),
-            //        R.drawable.apple);
-            //String name = String.valueOf(R.drawable.apple);
-            //listObjects.add(new CustomObject(name, bitmap));
-
-        }
-
         customDrawableView.setListObjects(listObjects);
+        customDrawableView.setMaxW(maxWidth);
+        customDrawableView.setMaxH(maxHeight);
         chronometer.start();
     }
 
